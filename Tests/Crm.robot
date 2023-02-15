@@ -19,7 +19,32 @@ Should be able to add new customer
 
     # Resize browser window for recording
     set window position     x=10   y=169
-    set window size         width=1600  height=1090
+    set window size         width=1400  height=1090
+
+    page should contain     Customers Are Priority One!
+
+    # Click link
+    click link              css=#SignIn
+    page should contain     Login
+
+    # Input text
+    input text              id=email-id     cam.vuchaunguyet@ascendcorp.com
+    input text              name=password-name      Cam123
+    click button            css=#submit-id
+    page should contain     Our Happy Customers
+
+    # Add Customer Page
+    click link              id=new-customer
+    page should contain     Add Customer
+    input text              id=EmailAddress     cam@gmail.com
+    input text              id=FirstName        Vu
+    input text              id=LastName         Cam
+    input text              id=City             Hanoi
+    select from list by value       name=state      NY
+    select radio button     gender              female
+    select checkbox         name=promos-name
+    click button            Submit
+    page should contain     New customer added
 
     sleep                   3s
     close browser
